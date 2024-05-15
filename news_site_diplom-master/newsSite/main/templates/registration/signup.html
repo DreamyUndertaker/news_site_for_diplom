@@ -1,0 +1,29 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Регистрация {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h2 class="mb-4 text-white">Регистрация</h2>
+            <form method="post" style="margin-left: 0;">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.username.label_tag }}
+                    <input type="text" name="{{ form.username.name }}" placeholder="Имя пользователя" class="form-control">
+                </div>
+                <div class="mb-3">
+                    {{ form.password1.label_tag }}
+                    <input type="password" name="{{ form.password1.name }}" placeholder="Пароль (минимум 8 символов)" class="form-control">
+                </div>
+                <div class="mb-3">
+                    {{ form.password2.label_tag }}
+                    <input type="password" name="{{ form.password2.name }}" placeholder="Подтвердите пароль" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+{% block title %} Новости на сайте {% endblock %}
+
+{% block content %}
+
+<style>
+    .alert{
+height: 500px;
+
+}
+</style>
+<div class="container text-center">
+    <h1 style="color:#ffff;">Новости</h1>
+
+    <div class="row">
+        {% if news %}
+            {% for el in news %}
+                <div class="col-md-6">
+                    <div class="alert alert-warning">
+                        {% if el.image %}
+                            <img src="{{ el.image.url }}" alt="{{ el.title }} Image" class="img-fluid" style="width: 100%; height: 200px">
+                        {% endif %}
+                        <h3>{{ el.title }}</h3>
+                        <p>{{ el.anons }}</p>
+
+                        <a href="{% url 'news-detail' el.id %}" class="btn btn-warning">Читать детальнее</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
