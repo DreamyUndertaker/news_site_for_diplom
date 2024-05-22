@@ -1,10 +1,11 @@
-from .models import Articles
-from django.forms import DateInput, ModelForm, TextInput, Textarea, FileInput
+from .models import Articles, Category
+from django.forms import DateInput, ModelForm, TextInput, Textarea, FileInput, Select
+
 
 class ArticlesForm(ModelForm):
     class Meta:
         model = Articles
-        fields = ['title', 'anons', 'full_text', 'date', 'image']
+        fields = ['title', 'anons', 'full_text', 'date', 'image', 'category']
 
         widgets = {
             "title": TextInput(attrs={
@@ -24,6 +25,9 @@ class ArticlesForm(ModelForm):
                 'placeholder': 'Текст статьи'
             }),
             "image": FileInput(attrs={
+                'class': 'form-control',
+            }),
+            "category": Select(attrs={
                 'class': 'form-control',
             }),
         }
